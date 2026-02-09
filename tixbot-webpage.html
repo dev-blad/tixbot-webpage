@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tixbot - Turn Discord into Your Customer Support System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            background: #5865f2;
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .nav-cta {
+            background: white;
+            color: #5865f2;
+            padding: 0.6rem 1.5rem;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.2s;
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #5865f2 0%, #4752c4 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #5865f2;
+            padding: 1rem 2.5rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        /* How It Works */
+        .how-it-works {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #2c3e50;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+            background: #f8f9fa;
+            border-radius: 12px;
+            transition: transform 0.2s;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            display: inline-block;
+            width: 50px;
+            height: 50px;
+            background: #5865f2;
+            color: white;
+            border-radius: 50%;
+            line-height: 50px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .step h3 {
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .step p {
+            color: #6c757d;
+        }
+
+        /* Features */
+        .features {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: box-shadow 0.2s;
+        }
+
+        .feature:hover {
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature h3 {
+            margin-bottom: 0.8rem;
+            color: #2c3e50;
+        }
+
+        .feature p {
+            color: #6c757d;
+            line-height: 1.7;
+        }
+
+        /* Value Props */
+        .value-props {
+            padding: 5rem 0;
+            background: white;
+            text-align: center;
+        }
+
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .value-item h3 {
+            font-size: 2rem;
+            color: #5865f2;
+            margin-bottom: 0.5rem;
+        }
+
+        .value-item p {
+            color: #6c757d;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .faq-item h3 {
+            color: #2c3e50;
+            margin-bottom: 0.8rem;
+        }
+
+        .faq-item p {
+            color: #6c757d;
+            line-height: 1.7;
+        }
+
+        /* Final CTA */
+        .final-cta {
+            padding: 5rem 0;
+            background: linear-gradient(135deg, #5865f2 0%, #4752c4 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .final-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .steps, .features-grid, .value-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">🎫 Tixbot</div>
+                <a href="#add-bot" class="nav-cta">Add to Discord</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Turn Discord into Your Customer Support System</h1>
+            <p>No new tools to learn. No expensive helpdesk subscriptions. Everything where your team already is.</p>
+            <a href="#add-bot" class="cta-button">Add to Discord - It's Free</a>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Add to Server</h3>
+                    <p>Add to Discord to add Tixbot to your Discord server.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Quick Setup</h3>
+                    <p>Configure support roles and ticket channels in under 5 minutes.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Start Supporting</h3>
+                    <p>Your team receives structured tickets with escalation and tracking built-in.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Core Features</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">🎫</div>
+                    <h3>Smart Ticket Creation</h3>
+                    <p>Users run /support or click a button. Creates private threads with automatic ticket IDs and assigns to your support team instantly.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⬆️</div>
+                    <h3>Multi-Tier Escalation</h3>
+                    <p>Move tickets between L1, L2, L3 support tiers with /escalate. Automatically notifies the next team and preserves conversation history.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📝</div>
+                    <h3>Internal Notes</h3>
+                    <p>Use /note to add staff-only comments that customers never see. Perfect for handoffs, context, and collaboration without cluttering the ticket.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <h3>Status Tracking</h3>
+                    <p>Track tickets through Open, Waiting, and Resolved states. Close with /close and categorize by Bug, User Error, Feature Request, or Other.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">📁</div>
+                    <h3>Auto-Archiving</h3>
+                    <p>Closed tickets automatically move to a separate archive channel, keeping your active support area clean and organized.</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">⚙️</div>
+                    <h3>Flexible Configuration</h3>
+                    <p>Choose public or private tickets. Set custom support roles. Configure ticket channels. All through simple commands.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Props -->
+    <section class="value-props">
+        <div class="container">
+            <h2 class="section-title">Why Teams Choose Tixbot</h2>
+            <div class="value-grid">
+                <div class="value-item">
+                    <h3>$0/mo</h3>
+                    <p>Free tier with core features. No credit card required.</p>
+                </div>
+                <div class="value-item">
+                    <h3>5 min</h3>
+                    <p>Setup time from install to first ticket.</p>
+                </div>
+                <div class="value-item">
+                    <h3>Zero Learning</h3>
+                    <p>Your team already knows Discord. No training needed.</p>
+                </div>
+                <div class="value-item">
+                    <h3>Full History</h3>
+                    <p>Every ticket, escalation, and note preserved automatically.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <h3>Is Tixbot really free?</h3>
+                <p>Yes! The core features (ticket creation, escalation, internal notes, status tracking) are completely free. We'll offer paid tiers in the future with custom branding, analytics, and advanced automation.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How is this different from other ticket bots?</h3>
+                <p>Most ticket bots are basic. Tixbot is built specifically for businesses running customer support. We have multi-tier escalation, internal notes separate from customer view, and proper status tracking—features real support teams need.</p>
+            </div>
+            <div class="faq-item">
+                <h3>How long does setup take?</h3>
+                <p>Under 5 minutes. Add the bot, set your support roles (L1, L2, L3), choose your ticket channel, and you're done. Start receiving tickets immediately.</p>
+            </div>
+            <div class="faq-item">
+                <h3>Can I use this for internal IT support?</h3>
+                <p>Absolutely! Many teams use Tixbot for internal helpdesks, IT support, HR requests, or any scenario where you need structured ticket management in Discord.</p>
+            </div>
+            <div class="faq-item">
+                <h3>What about data and privacy?</h3>
+                <p>Tixbot only stores what's necessary to function (ticket IDs, status, configuration). We don't sell data or use it for anything beyond providing the service. You own your support data.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta" id="add-bot">
+        <div class="container">
+            <h2>Ready to Upgrade Your Discord Support?</h2>
+            <p>Join teams already using Tixbot to deliver better customer service.</p>
+            <a href="#" class="cta-button">Add to Discord</a>
+            <p style="margin-top: 1.5rem; font-size: 0.9rem; opacity: 0.8;">No credit card required • Free tier available • Setup in 5 minutes</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Tixbot. Built for Discord communities running real support operations.</p>
+        </div>
+    </footer>
+</body>
+</html>
